@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- JWT(JSON Web Token)相关配置参数 -->
+<jwt>
+    <!-- 算法 -->
+    <algorithm>HS256</algorithm>
+    <!-- 令牌的发行人 -->
+    <issuer>MaylandStudio</issuer>
+    <!-- 令牌的有效时间（ms)，默认1小时：60 * 60 * 1000 = 3600000 -->
+    <time_to_live>3600000</time_to_live>
+    <!-- 令牌加密用的私钥：可用UUID随机生成 -->
+    <sign_key>fd5d1e03-3648-49bb-9daf-17076b28c447</sign_key>
+</jwt>

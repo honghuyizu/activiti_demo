@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- HttpClient连接池相关配置参数 -->
+<http_client_pool_config>
+    <!-- 连接池支持的最大连接数 -->
+    <max_total>200</max_total>
+    <!-- 连接池到每个主机地址的最大并发连接数：设置值为（max_total / 主机数） -->
+    <default_max_per_route>50</default_max_per_route>
+    <!-- 从连接池中得到连接的超时时间：毫秒 -->
+    <connection_request_timeout>5000</connection_request_timeout>
+    <!-- 与目标主机建立连接的超时时间：毫秒 -->
+    <connect_timeout>5000</connect_timeout>
+    <!-- 目标主机返回响应的超时时间：毫秒 -->
+    <socket_timeout>10000</socket_timeout>
+    <!-- 连接校验间隔时间：毫秒 -->
+    <validate_after_inactivity>10</validate_after_inactivity>
+</http_client_pool_config>

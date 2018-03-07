@@ -1,0 +1,19 @@
+//设置本地依赖包
+dependencies {
+    //设置编译级别的依赖包
+    compile(
+            'mayland_product:image_auth:0.2.0',
+            'mayland_product:sms_auth:0.2.0',
+            'mayland_rbac:rbac_api:0.2.0',
+    )
+    //测试级别的依赖包
+    //testCompile(
+    //)
+}
+//设置jar的主类
+bootRepackage {
+    mainClass = 'com.activiti.ActivitiApiMain'
+}
+springBoot {
+    mainClass = 'com.activiti.ActivitiApiMain'
+}

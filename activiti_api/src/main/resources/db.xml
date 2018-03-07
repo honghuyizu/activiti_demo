@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 数据库相关配置参数 -->
+<db_config>
+    <!-- JDBC驱动类路径 -->
+    <driver>com.mysql.jdbc.Driver</driver>
+    <!-- JDBC连接URL -->
+    <url>jdbc:mysql://localhost:3306/activiti_dev?useUnicode=true&amp;characterEncoding=UTF-8</url>
+    <!-- JDBC连接用户名 -->
+    <user>root</user>
+    <!-- JDBC连接用户密码 -->
+    <password>root</password>
+    <!-- JDBC连接池的初始化连接数 -->
+    <initial_size>5</initial_size>
+    <!-- JDBC连接池的最大活动连接数 -->
+    <max_active>20</max_active>
+    <!-- JDBC连接池的最大空闲连接数 -->
+    <max_idle>20</max_idle>
+    <!-- JDBC连接池的最小空闲连接数 -->
+    <min_idle>5</min_idle>
+    <!-- JDBC连接池没有可用连接时的最大等待时间(ms)，超过时间则抛出异常，如果设置为-1，则表示无限等待，默认值为-1 -->
+    <max_wait>-1</max_wait>
+    <!-- 验证从连接池取出的连接的SQL语句 -->
+    <validation_query>select 1</validation_query>
+</db_config>

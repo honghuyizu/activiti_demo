@@ -1,0 +1,226 @@
+//构建脚本
+buildscript {
+    //扩展信息
+    ext {
+        //设置spring-boot的版本
+        springBootVersion = '1.5.9.RELEASE'
+    }
+    //设置依赖库
+    repositories {
+        //maven本地仓库
+        mavenLocal()
+        //私有仓库
+        //maven { url "http://code.hsbank360.com:8081/nexus/content/repositories/releases" }
+        maven { url "http://211.167.112.237:8081/nexus/content/repositories/releases" }
+        //spring-io仓库
+        maven { url "https://repo.spring.io/libs-release" }
+        maven { url "http://repo.spring.io/release" }
+        maven { url "http://repo.spring.io/milestone" }
+        maven { url "http://repo.spring.io/snapshot" }
+        //maven中央仓库
+        mavenCentral()
+    }
+    //设置依赖
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
+    }
+}
+
+//设置所有工程公用的配置
+allprojects {
+    //插件：指定项目为java项目，项目编译(gradle build)时生成项目的jar包
+    apply plugin: 'java'
+}
+
+//设置所有子工程公用的配置
+subprojects {
+    //插件：运行、编译应用程序并用非“fat jar”方式创建二进制发布版本
+    //apply plugin: 'application'
+    //插件：构建eclipse IDE的开发环境（下载依赖包，生成eclipse需要的.project、.classpath等文件）
+    //apply plugin: 'eclipse'
+    //插件：构建IntelliJ IDEA IDE的开发环境（下载依赖包，生成idea需要的配置文件）
+    apply plugin: 'idea'
+    //插件：构建web项目的开发环境（下载依赖包，生成所需要的.project、.classpath等文件。使用eclipse-j2ee版本时，指定为wtp环境）
+    //apply plugin: 'eclipse-wtp'
+    //插件：指定web项目，项目编译(gradle build)时生成项目的war包
+    apply plugin: 'war'
+    //插件：使用maven来管理依赖
+    apply plugin: 'maven'
+    //插件：发布jar包到maven仓库
+    apply plugin: 'maven-publish'
+    //插件：提供一些创建可执行jar和从源码运行项目的任务，它还提供了ResolutionStrategy以方便依赖中不用写版本号
+    apply plugin: 'org.springframework.boot'
+    //------------------------------------------------------------------------------------
+    //设置依赖库
+    repositories {
+        //maven本地仓库
+        mavenLocal()
+        //私有仓库
+        //maven { url "http://code.hsbank360.com:8081/nexus/content/repositories/releases" }
+        maven { url "http://211.167.112.237:8081/nexus/content/repositories/releases" }
+        //spring-io仓库
+        maven { url "https://repo.spring.io/libs-release" }
+        maven { url "http://repo.spring.io/release" }
+        maven { url "http://repo.spring.io/milestone" }
+        maven { url "http://repo.spring.io/snapshot" }
+        //maven中央仓库
+        mavenCentral()
+    }
+    //设置依赖
+    dependencies {
+        //编译级别的依赖包
+        compile fileTree(dir: 'libs', include: ['*.jar'])
+        //编译级别的依赖包
+        compile(
+                //------------commons
+                'commons-io:commons-io:2.4',
+                'commons-net:commons-net:3.3',
+                'commons-lang:commons-lang:2.6',
+                'commons-codec:commons-codec:1.10',
+                'commons-dbcp:commons-dbcp:1.4',
+                'commons-pool:commons-pool:1.6',
+                'commons-logging:commons-logging:1.2',
+                'commons-fileupload:commons-fileupload:1.3.1',
+                'commons-beanutils:commons-beanutils:1.9.2',
+                'commons-collections:commons-collections:3.2.2',
+                'commons-configuration:commons-configuration:1.10',
+                //------------apache
+                'org.apache.commons:commons-collections4:4.0',
+                'org.apache.commons:commons-lang3:3.4',
+                'org.apache.httpcomponents:httpclient:4.5.3',
+                'org.apache.httpcomponents:httpmime:4.5.3',
+                'org.apache.ant:ant:1.9.6',
+                'org.apache.mina:mina-core:2.0.9',
+                'org.apache.commons:commons-pool2:2.4.2',
+                //------------redis
+                'redis.clients:jedis:2.8.1',
+                //------------google.guava
+                'com.google.guava:guava:19.0',
+                //------------javax
+                'javax.servlet:javax.servlet-api:3.1.0',
+                'javax.activation:activation:1.1.1',
+                'javax.mail:mail:1.4.7',
+                //------------log
+                'org.slf4j:slf4j-api:1.7.18',
+                'ch.qos.logback:logback-classic:1.1.3',
+                'ch.qos.logback:logback-core:1.1.3',
+                //------------json
+                'com.alibaba:fastjson:1.2.6',
+                //------------JSON Web Token for Java and Android（https://github.com/jwtk/jjwt）
+                'io.jsonwebtoken:jjwt:0.7.0',
+                //------------quartz
+                'org.quartz-scheduler:quartz:2.2.3',
+                'org.quartz-scheduler:quartz-jobs:2.2.3',
+                //------------date and time library
+                'joda-time:joda-time:2.8.2',
+                //------------pinyin
+                'com.belerweb:pinyin4j:2.5.0',
+                //------------ssh2
+                'com.jcraft:jsch:0.1.53',
+                //------------excel
+                'org.apache.poi:poi:3.14',
+                'org.apache.poi:poi-ooxml:3.14',
+                'org.apache.poi:poi-ooxml-schemas:3.14',
+                'org.apache.xmlbeans:xmlbeans:2.6.0',
+                //------------math
+                'net.sourceforge.jeval:jeval:0.9.4',
+                //------------lombok
+                'org.projectlombok:lombok:1.16.14',
+                //------------mysql
+                'mysql:mysql-connector-java:5.1.38',
+                //------------web
+                'org.springframework.boot:spring-boot-starter-web',
+                //------------tomcat
+                'org.springframework.boot:spring-boot-starter-tomcat',
+                'org.activiti:activiti-spring:5.22.0',
+                'org.activiti:activiti-engine:5.22.0',
+                /* //------------activiti
+                 'org.activiti:activiti-spring-boot-starter-basic:5.22.0',
+                 'org.activiti:activiti-spring-boot-starter-rest-api:5.22.0',
+                 'org.activiti:activiti-spring-boot-starter-jpa:5.22.0',
+                 'org.activiti:activiti-modeler:5.22.0',
+                 'org.activiti:activiti-diagram-rest:5.22.0',*/
+                //------------base
+                'base_framework:base_util:0.2.0',
+                'base_framework:base_dao:0.2.0',
+                'base_framework:base_api:0.2.0'
+        )
+        //测试级别的依赖包
+        testCompile(
+                'junit:junit:4.11',
+                'org.hamcrest:hamcrest-core:1.1',
+                'org.springframework.boot:spring-boot-starter-test'
+        )
+    }
+    //设置jar包的版本号
+    //version = '0.2.0'
+    //指定编译Java源文件时使用的jdk版本
+    sourceCompatibility = 1.8
+    //指定生成二进制文件时使用的jdk版本
+    targetCompatibility = 1.8
+    //------------------------------------------------------------------------------------
+    //任务：创建java工程
+    task createJavaProject {
+        doLast {
+            if (!file("libs").exists()) {
+                file("libs").mkdirs()
+            }
+            sourceSets*.java.srcDirs*.each {
+                if (!it.exists()) {
+                    it.mkdirs()
+                }
+            }
+            sourceSets*.resources.srcDirs*.each {
+                if (!it.exists()) {
+                    it.mkdirs()
+                }
+            }
+        }
+    }
+    //任务：创建web工程
+    task createWebProject(dependsOn: 'createJavaProject') {
+        doLast {
+            if (!file("$webAppDirName/WEB-INF/lib").exists()) {
+                file("$webAppDirName/WEB-INF/lib").mkdirs()
+            }
+            if (!file("$webAppDirName/WEB-INF/classes").exists()) {
+                file("$webAppDirName/WEB-INF/classes").mkdirs()
+            }
+            if (!file("$webAppDirName/static/images").exists()) {
+                file("$webAppDirName/static/images").mkdirs()
+            }
+            if (!file("$webAppDirName/static/css").exists()) {
+                file("$webAppDirName/static/css").mkdirs()
+            }
+            if (!file("$webAppDirName/static/js").exists()) {
+                file("$webAppDirName/static/js").mkdirs()
+            }
+            if (!file("$webAppDirName/static/third_party").exists()) {
+                file("$webAppDirName/static/third_party").mkdirs()
+            }
+        }
+    }
+    //配置类路径到Class-Path，以便jvm能找到相应的class文件
+    jar {
+        doFirst {
+            manifest {
+                attributes("Class-Path": configurations.compile.collect { it.getName() }.join(' '))
+            }
+        }
+        //配置文件不打包
+        exclude('*.xml')
+        exclude('*.properties')
+    }
+    //设置编译参数
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+        }
+    }
+    //解决中文乱码问题
+    [compileJava, javadoc, compileTestJava]*.options*.encoding = 'UTF-8'
+    //任务：指定gradle的版本
+    task wrapper(type: Wrapper) {
+        gradleVersion = '4.4'
+    }
+}

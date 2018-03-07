@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CORS跨域配置参数
+CORS：Cross-origin resource sharing（跨域资源共享）
+ -->
+<cors_config>
+    <!--
+    允许跨域访问的路径的正则表达式
+    -->
+    <path_pattern>/**</path_pattern>
+    <!--
+    表示允许发起跨域请求的来源，如：http://www.maylandstudio.com
+    "*"表示允许所有请求来源
+    -->
+    <allowed_origins>*</allowed_origins>
+    <!--
+    允许跨域请求的方法: GET,POST,PUT,DELETE,OPTIONS,HEAD
+     *"表示允许所有请求方法
+     -->
+    <allowed_methods>*</allowed_methods>
+    <!--
+    允许跨域请求的头部类型
+    *"表示允许所有请求头部类型
+     -->
+    <allowed_headers>*</allowed_headers>
+    <!--
+    是否允许发送Cookie和HTTP认证信息
+    默认为：false
+    -->
+    <allow_credentials>false</allow_credentials>
+    <!--
+    表示N秒内不需要再发送预校验请求
+    默认值是1800秒
+    -->
+    <max_age>1800</max_age>
+</cors_config>
